@@ -68,7 +68,8 @@ const handleChange=(e)=>{
             <div className='bg-white my-2 p-1 boarder border-gray-200 rounded'> 
                 {group.map((option, idx)=>(
                         <div key={idx} className='flex-cols'>
-                        <input type="checkbox" value={option} onChange={(e)=> setBaseGroup(e.target.value)}/>
+                        <input type="checkbox" 
+                         name={option} onChange={(e)=>{e.target.checked ? setBaseGroup(e.target.name): setBaseGroup(" ")}}/>
                         <label>{option}</label>
                         </div>
                       ))}
@@ -86,7 +87,7 @@ const handleChange=(e)=>{
                            onChange={handleChange}
                            value={userData['fname'] || ""}
                            name="fname"
-                           placeholder='First Name'
+                           placeholder='Enter name of your base group '
                            className='p-1 px-2 appearance-none outline-none border w-5/6 text-gray-800'
                        />
                    </div>
