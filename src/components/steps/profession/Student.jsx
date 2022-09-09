@@ -1,12 +1,14 @@
 import React, {useState} from 'react'
 
-const Student = ({handleChange, userData}) => {
+const Student = ({handleChange, userData,setUserData}) => {
+
   const level=[" ","Basic", "SHS", "University"]
+  const grade=["Nursery", "Primary", "JHS"]
   const [SelectedValue, setSelectedValue]=useState(level[0])
 
   const changeHandler=(e)=>{
-    setSelectedValue(e.target.value); 
-    handleChange(e)
+    const{name, value}=e.target; 
+    setUserData({...userData, [name]: value})
   }
   return (
     <div className='flex flex-col'>
@@ -18,14 +20,15 @@ const Student = ({handleChange, userData}) => {
         </div>
         <div className='bg-white my-2 p-1 flex boarder border-gray-200 rounded'> 
             <select
-                onChange={changeHandler}
-                defaultValue={SelectedValue}
-                name="fname"
+                onChange={(e)=>{ setSelectedValue(e.target.value)
+                                    changeHandler(e)}}
+                value={userData['level'] || ""}
+                name="level"
                 id="1"
                 className='p-1 px-2 appearance-none outline-none border w-5/6 text-gray-800'
                 >
                   {level.map((option, idx)=>(
-                    <option key={idx}>{option}</option>
+                    <option value={option} key={idx}>{option}</option>
                   ))}
                 </select>
         </div>
@@ -39,8 +42,8 @@ const Student = ({handleChange, userData}) => {
                 <input
                     type="text"
                     onChange={handleChange}
-                    value={userData['Lname'] || ""}
-                    name="Lname"
+                    value={userData['schoolName'] || ""}
+                    name="schoolName"
                     placeholder='Name of School'
                     className='p-1 px-2 appearance-none outline-none border w-5/6 text-gray-800'
                 />
@@ -74,8 +77,8 @@ const Student = ({handleChange, userData}) => {
                 <input
                     type="text"
                     onChange={handleChange}
-                    value={userData['Lname'] || ""}
-                    name="Lname"
+                    value={userData['grade'] || " "}
+                    name="grade"
                     placeholder='Name of School'
                     className='p-1 px-2 appearance-none outline-none border w-5/6 text-gray-800'
                 />
@@ -88,10 +91,10 @@ const Student = ({handleChange, userData}) => {
             </div>
             <div className='bg-white my-2 p-1 flex boarder border-gray-200 rounded'> 
                 <input
-                    type="text"
+                    type="Date"
                     onChange={handleChange}
-                    value={userData['Lname'] || ""}
-                    name="Lname"
+                    value={userData['gradDate'] || ""}
+                    name="gradDate"
                     placeholder='Name of School'
                     className='p-1 px-2 appearance-none outline-none border w-5/6 text-gray-800'
                 />

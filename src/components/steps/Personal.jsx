@@ -8,7 +8,7 @@ const handleChange=(e)=>{
     const{name, value}=e.target; 
     setUserData({...userData, [name]: value})
 }
-
+    console.log(userData)
   return (
     <div className='flex flex-col'>
         <div className='flex'>
@@ -52,13 +52,17 @@ const handleChange=(e)=>{
                 Gender
             </div>
             <div className='bg-white my-2 p-1 flex boarder border-gray-200 rounded'> 
-                <input
+                <select
                     onChange={handleChange}
-                    value={userData['fname'] || ""}
-                    name="fname"
+                    value={userData['gender'] || ""}
+                    name="gender"
                     placeholder='First Name'
                     className='p-1 px-2 appearance-none outline-none border w-5/6 text-gray-800'
-                />
+                >
+                    <option value=" "> </option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                </select>
             </div>
         </div>
         <div className='w-full mx-2 flex-1'>
@@ -70,8 +74,8 @@ const handleChange=(e)=>{
                 <input
                     type="Date"
                     onChange={handleChange}
-                    value={userData['Lname'] || ""}
-                    name="Lname"
+                    value={userData['date'] || ""}
+                    name="date"
                     className='p-1 px-2 appearance-none outline-none border w-5/6 text-gray-800 '
                 />
             </div>
@@ -87,8 +91,8 @@ const handleChange=(e)=>{
             <div className='bg-white my-2 p-1 flex boarder border-gray-200 rounded'> 
                 <input
                     onChange={handleChange}
-                    value={userData['fname'] || ""}
-                    name="fname"
+                    value={userData['marital'] || ""}
+                    name="marital"
                     placeholder='First Name'
                     className='p-1 px-2 appearance-none outline-none border w-5/6 text-gray-800'
                 />
@@ -103,8 +107,8 @@ const handleChange=(e)=>{
                 <input
                     type="text"
                     onChange={handleChange}
-                    value={userData['Lname'] || ""}
-                    name="Lname"
+                    value={userData['spouse'] || ""}
+                    name="spouse"
                     placeholder='Last/Family Name'
                     className='p-1 px-2 appearance-none outline-none border w-5/6 text-gray-800 '
                 />

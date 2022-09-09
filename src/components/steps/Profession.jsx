@@ -16,7 +16,7 @@ const handleChange=(e)=>{
   const{name, value}=e.target; 
   setUserData({...userData, [name]: value})
 }
-
+console.log(userData)
   return (
         <div className='flex flex-col'>
         <div className='flex'>
@@ -27,20 +27,22 @@ const handleChange=(e)=>{
             </div>
             <div className='bg-white my-2 p-1 flex boarder border-gray-200 rounded'> 
                 <select
-                    onChange={(e)=> setSelectedValue(e.target.value)}
-                    defaultValue={SelectedValue}
-                    name="fname"
+                    onChange={(e)=>{ setSelectedValue(e.target.value)
+                      const{name, value}=e.target; 
+                      setUserData({...userData, [name]: value})}}
+                    value={userData['status'] || ""}
+                    name="status"
                     id="1"
                     className='p-1 px-2 appearance-none outline-none border w-5/6 text-gray-800'
                     >
                       {options.map((option, idx)=>(
-                        <option key={idx}>{option}</option>
+                        <option value={option} key={idx}>{option}</option>
                       ))}
                     </select>
             </div>
             <div>
               {" "}
-              {SelectedValue==="Student"? <Student handleChange={handleChange} userData={userData}/> : SelectedValue=== "Employed" ? <Employed/> 
+              {SelectedValue==="Student"? <Student handleChange={handleChange} setUserData={setUserData} userData={userData}/> : SelectedValue=== "Employed" ? <Employed/> 
                  :SelectedValue==="Self-Employed" ? <SelfEmployed/> : SelectedValue==="Unemployed" ? <Unemployed/> : " "}
             </div>
         </div>
