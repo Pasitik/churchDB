@@ -14,12 +14,17 @@ const Role = () => {
   const {userData, setUserData}=useContext(StepperContext);
 
   const handleGroupChange=(e)=>{
-  const item=e.target.value
+  let item=e.target.value
   setSelected([...selected, item])
   setUserData({...userData, [e.target.name]: [...selected, item]})
 }
 
+const handleDelete=(e)=>{
+  userData.baseGroup.splice(userData.baseGroup.indexOf(e.target.value),1) ;
+  console.log(userData);
+  }
 
+ 
 const handleChange=(e)=>{
   const{name, value}=e.target; 
   setUserData({...userData, [name]: value})
@@ -82,9 +87,10 @@ console.log(userData)
                         id={option} 
                         value={option}
                         name="baseGroup"
-                             onChange={(e)=>e.target.checked===true ?  handleGroupChange(e):   setUserData({...userData, [e.target.name]: 
-                              userData.baseGroup.splice(!userData.baseGroup.indexOf({option}),selected.length-1)                         
-                            })
+                             onChange={(e)=>e.target.checked===true ?  handleGroupChange(e)
+                              : e.target.checked===false ? handleDelete(e) :""
+                                               
+                            
                                           }/>
                         <label for={option} value={option}>{option}</label>
                         </div>
